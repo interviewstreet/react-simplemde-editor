@@ -9,7 +9,7 @@
     "simplemde": "^1.11.2"
   },
   "peerDependencies": {
-    "react": "^0.14.2 || ^15.0.0-rc || ^15.0.0"
+    "react": "^0.14.2 || ^15.0.0-rc || ^15.0.0 || ^16.0.0"
   },
   "main": "dist/react-simplemde-editor.js",
   "devDependencies": {

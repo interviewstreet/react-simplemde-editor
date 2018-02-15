@@ -56,102 +56,130 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
 	var React = __webpack_require__(1);
 	var generateId = __webpack_require__(2);
 	var NOOP = __webpack_require__(3);
 	
-	module.exports = React.createClass({
-	  displayName: 'exports',
+	var SimpleMDE = function (_React$Component) {
+	  _inherits(SimpleMDE, _React$Component);
 	
+	  function SimpleMDE(props) {
+	    _classCallCheck(this, SimpleMDE);
 	
-	  getInitialState: function getInitialState() {
-	    return {
+	    var _this = _possibleConstructorReturn(this, (SimpleMDE.__proto__ || Object.getPrototypeOf(SimpleMDE)).call(this, props));
+	
+	    _this.state = {
 	      keyChange: false
 	    };
-	  },
 	
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      onChange: NOOP,
-	      options: {}
-	    };
-	  },
-	
-	  componentWillMount: function componentWillMount() {
-	    var id = this.props.id;
-	    if (id) {
-	      this.id = id;
-	    } else {
-	      this.id = generateId();
-	    }
-	  },
-	
-	  componentDidMount: function componentDidMount() {
-	    this.createEditor();
-	    this.addEvents();
-	    this.addExtraKeys();
-	  },
-	
-	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-	    if (!this.state.keyChange && nextProps.value !== this.simplemde.value()) {
-	      this.simplemde.value(nextProps.value);
-	    }
-	
-	    this.setState({
-	      keyChange: false
-	    });
-	  },
-	
-	  componentWillUnmount: function componentWillUnmount() {
-	    this.removeEvents();
-	  },
-	
-	  createEditor: function createEditor() {
-	    var SimpleMDE = __webpack_require__(4);
-	    var initialOptions = {
-	      element: document.getElementById(this.id),
-	      initialValue: this.props.value
-	    };
-	
-	    var allOptions = Object.assign({}, initialOptions, this.props.options);
-	    this.simplemde = new SimpleMDE(allOptions);
-	  },
-	
-	  eventWrapper: function eventWrapper() {
-	    this.setState({
-	      keyChange: true
-	    });
-	    this.props.onChange(this.simplemde.value());
-	  },
-	
-	  removeEvents: function removeEvents() {
-	    this.editorEl.removeEventListener('keyup', this.eventWrapper);
-	    this.editorToolbarEl && this.editorToolbarEl.removeEventListener('click', this.eventWrapper);
-	  },
-	
-	  addEvents: function addEvents() {
-	    var wrapperId = this.id + '-wrapper';
-	    var wrapperEl = document.getElementById('' + wrapperId);
-	
-	    this.editorEl = wrapperEl.getElementsByClassName('CodeMirror')[0];
-	    this.editorToolbarEl = wrapperEl.getElementsByClassName('editor-toolbar')[0];
-	
-	    this.editorEl.addEventListener('keyup', this.eventWrapper);
-	    this.editorToolbarEl && this.editorToolbarEl.addEventListener('click', this.eventWrapper);
-	  },
-	
-	  addExtraKeys: function addExtraKeys() {
-	    // https://codemirror.net/doc/manual.html#option_extraKeys
-	    if (this.props.extraKeys) {
-	      this.simplemde.codemirror.setOption('extraKeys', this.props.extraKeys);
-	    }
-	  },
-	
-	  render: function render() {
-	    var textarea = React.createElement('textarea', { id: this.id });
-	    return React.createElement('div', { id: this.id + '-wrapper', className: this.props.className }, textarea);
+	    _this.eventWrapper = _this.eventWrapper.bind(_this);
+	    return _this;
 	  }
-	});
+	
+	  _createClass(SimpleMDE, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var id = this.props.id;
+	      if (id) {
+	        this.id = id;
+	      } else {
+	        this.id = generateId();
+	      }
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.createEditor();
+	      this.addEvents();
+	      this.addExtraKeys();
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if (!this.state.keyChange && nextProps.value !== this.simplemde.value()) {
+	        this.simplemde.value(nextProps.value);
+	      }
+	
+	      this.setState({
+	        keyChange: false
+	      });
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.removeEvents();
+	    }
+	  }, {
+	    key: 'createEditor',
+	    value: function createEditor() {
+	      var SimpleMDE = __webpack_require__(4);
+	      var initialOptions = {
+	        element: document.getElementById(this.id),
+	        initialValue: this.props.value
+	      };
+	
+	      var allOptions = Object.assign({}, initialOptions, this.props.options);
+	      this.simplemde = new SimpleMDE(allOptions);
+	    }
+	  }, {
+	    key: 'eventWrapper',
+	    value: function eventWrapper() {
+	      this.setState({
+	        keyChange: true
+	      });
+	      this.props.onChange(this.simplemde.value());
+	    }
+	  }, {
+	    key: 'removeEvents',
+	    value: function removeEvents() {
+	      this.editorEl.removeEventListener('keyup', this.eventWrapper);
+	      this.editorToolbarEl && this.editorToolbarEl.removeEventListener('click', this.eventWrapper);
+	    }
+	  }, {
+	    key: 'addEvents',
+	    value: function addEvents() {
+	      var wrapperId = this.id + '-wrapper';
+	      var wrapperEl = document.getElementById('' + wrapperId);
+	
+	      this.editorEl = wrapperEl.getElementsByClassName('CodeMirror')[0];
+	      this.editorToolbarEl = wrapperEl.getElementsByClassName('editor-toolbar')[0];
+	
+	      this.editorEl.addEventListener('keyup', this.eventWrapper);
+	      this.editorToolbarEl && this.editorToolbarEl.addEventListener('click', this.eventWrapper);
+	    }
+	  }, {
+	    key: 'addExtraKeys',
+	    value: function addExtraKeys() {
+	      // https://codemirror.net/doc/manual.html#option_extraKeys
+	      if (this.props.extraKeys) {
+	        this.simplemde.codemirror.setOption('extraKeys', this.props.extraKeys);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var textarea = React.createElement('textarea', { id: this.id });
+	      return React.createElement('div', { id: this.id + '-wrapper', className: this.props.className }, textarea);
+	    }
+	  }]);
+	
+	  return SimpleMDE;
+	}(React.Component);
+	
+	SimpleMDE.defaultProps = {
+	  onChange: NOOP,
+	  options: {}
+	};
+	
+	module.exports = SimpleMDE;
 
 /***/ },
 /* 1 */
