@@ -6,7 +6,7 @@
   "author": "Ben Lodge",
   "license": "MIT",
   "dependencies": {
-    "react": "^15.5.x",
+    "react": "^16.5.0",
     "simplemde": "^1.11.2"
   },
   "main": "dist/simplemde-editor.js",
