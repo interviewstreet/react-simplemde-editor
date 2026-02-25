@@ -1,0 +1,27 @@
+repo:
+  name: react-simplemde-editor
+  description: React wrapper for simplemde (easymde) markdown editor
+  owner: benrlodge
+
+prerequisites:
+  - name: GitHub CLI
+  - name: yarn
+  - name: node
+    version: '>=12.0.0'
+
+setup:
+  - yarn install
+  - yarn dev
+
+dev:
+  command: yarn dev
+  port: 8080
+
+build:
+  command: yarn build
+
+test:
+  command: yarn test
+
+lint:
+  command: yarn lint
